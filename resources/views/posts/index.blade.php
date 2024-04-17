@@ -8,7 +8,7 @@
 <body>
   <header>
     <nav>
-      <a href="{{ route('post.index') }}">投稿アプリ</a>
+      <a href="{{ route('posts.index') }}">投稿アプリ</a>
       <ul>
         <li>
           <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ログアウト</a>
@@ -22,6 +22,10 @@
 
   <main>
     <h1>投稿一覧</h1>
+    @if(session('flash_message'))
+      <p>{{ session('flash_message') }}</p>
+    @endif
+
     @if($posts->isNotEmpty())
       @foreach($posts as $post)
         <article>
