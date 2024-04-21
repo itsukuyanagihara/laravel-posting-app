@@ -39,12 +39,12 @@ class PostController extends Controller
     }
 
     // 編集ページ
-    public function edit(){
+    public function edit(Post $post){
         if($post->user_id !== Auth::id()) {
             return redirect()->route('posts.index')->with('error_message', '不正なアクセスです。');
         }
 
-        return view('post.edit', compact('post'));
+        return view('posts.edit', compact('post'));
     }
 
     // 更新機能
