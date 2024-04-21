@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>新規投稿</title>
+  <title>投稿編集</title>
 </head>
 <body>
   <header>
     <nav>
       <a href="{{ route('posts.index') }}">投稿アプリ</a>
+
       <ul>
         <li>
-          <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ログアウト</a>
+          <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">ログアウト</a>
           <form id="logout-form" action="{{ route('logout') }}" method="POST">
             @csrf
           </form>
@@ -20,13 +21,12 @@
     </nav>
   </header>
 
-
-
   <main>
-    <h2>新規投稿</h2>
+    <h1>投稿編集</h1>
+
     @if($errors->any())
       <ul>
-        @foreach($errors->all() as $error)
+        @foreach ($errors as $error)
           <li>{{ $error }}</li>
         @endforeach
       </ul>
@@ -34,22 +34,20 @@
 
     <a href="{{ route('posts.index') }}">&lt; 戻る</a>
 
-    <form action="{{ route('posts.store') }}" method="POST">
+    <form action="">
       @csrf
+      @method('PATCH')
       <div>
         <label for="title">タイトル</label>
-        <input type="text" id="title" name="title" value="{{ old('title') }}">
+        <input type="text" id="title" name="title" value="{{ old('title', $post->title) }}">
       </div>
       <div>
         <label for="content">本文</label>
-        <textarea name="content" id="content">{{ old('content') }}</textarea>
+        <textarea name="content" id="content">{{ old('content', $post->content) }}</textarea>
       </div>
-      <button type="submit">投稿</button>
+      <button type="submit">更新</button>
     </form>
-
   </main>
-
-
 
 
   <footer>
