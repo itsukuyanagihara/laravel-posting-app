@@ -34,7 +34,7 @@
 
     <a href="{{ route('posts.index') }}">&lt; 戻る</a>
 
-    <form action="">
+    <form action="{{ route('posts.update', $post) }}" method="POST">
       @csrf
       @method('PATCH')
       <div>
