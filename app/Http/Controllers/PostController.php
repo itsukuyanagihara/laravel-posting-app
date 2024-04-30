@@ -60,7 +60,7 @@ class PostController extends Controller
 
     // 削除機能
     public function destroy(Post $post) {
-        if($post->id !== Auth::id()){
+        if($post->user_id !== Auth::id()){
             return redirect()->route('posts.index')->with('error_message', '不正なアクセスです。');
         }
 
